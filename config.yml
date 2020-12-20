@@ -29,7 +29,7 @@ Channels: {"global": "000000000000000000"}
 DiscordConsoleChannelId: "000000000000000000"
 
 # Enlace de invitación que se muestra a los jugadores cuando usan /discord y en el mensaje que se muestra a los jugadores no vinculados cuando se aplica el enlace
-DiscordInviteLink: "discord.gg/changethisintheconfig.yml"
+DiscordInviteLink: "https://discord.gg/Z6D29rbH" 
 
 # opcion de Debug, no toque a menos que sea necesario
 #
@@ -222,7 +222,7 @@ ChannelTopicUpdaterRateInMinutes: 10
 # Si no quieres respuestas automáticas, configura esto solo con {}
 # Las variables de PlaceholderAPI son compatibles como valores
 #
-DiscordCannedResponses: {"!ip": "cambiaratuserverip.me", "!site": "http://tusitioweb.net"}
+DiscordCannedResponses          : {          "! Ip"          : "cambiaratuserverip.me"         ,        "! Sitio"      : "TopMultiServers" } 
 
 # Vincular cuenta de Minecraft a Discord
 # Estas son las opciones de configuración relacionadas con cómo vincular una cuenta de Minecraft con una cuenta de Discord
