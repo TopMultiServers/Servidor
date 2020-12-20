@@ -1,408 +1,86 @@
-# Discord -> Minecraft mensaje
-#
-# DiscordToMinecraftChatMessageFormat: el formato utilizado al enviar mensajes de Discord a Minecraft
-# DiscordToMinecraftChatMessageFormatNoRole: el formato utilizado al enviar mensajes de Discord a Minecraft cuando la persona no tiene ningún rol
-#
-# Marcadores de posición disponibles:
-# %allroles%:       todos los roles de la persona combinados con DiscordToMinecraftAllRolesSeparator entre todos ellos
-#                    ejemplo: Owner | Desarrollador | Jefe
-# %message%:        contenido del mensaje
-#                    ejemplo: ¡Hola!
-# %toprole%:        el rango más alto de la persona
-#                    ejemplo: Owner
-# %toproleinitial%: primera letra del rol más alto de la persona.
-#                    example: O
-# %toprolecolor%:   color aproximado del rol más alto de la persona, definiciones para esto en DiscordChatChannelColorTranslations en config.yml
-#                    ejemplo: &4
-# %name%:           nombre efectivo de la persona en Discord (apodo si está presente, nombre de usuario de lo contrario)
-#                    ejemplo: NotchIsMe
-# %username%:       el nombre de la persona en Discord
-#                    ejemplo: Notch
-# %channelname%:    nombre del canal del que proviene el mensaje
-#                    ejemplo: server-chat
-#
-# DiscordToMinecraftAllRolesSeparator: el separador utilizado entre los roles en %allroles%
-#
-DiscordToMinecraftChatMessageFormat: "[&bDiscord &r| %toprolecolor%%toprole%&r] %name% » %message%"
-DiscordToMinecraftChatMessageFormatNoRole: "[&bDiscord&r] %name% » %message%"
-DiscordToMinecraftAllRolesSeparator: " | "
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# PLUGIN MESSAGES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-# Minecraft -> Discord mensaje
-#
-# MinecraftChatToDiscordMessageFormat: el formato utilizado al enviar mensajes de Minecraft a Discord
-# MinecraftChatToDiscordMessageFormatNoPrimaryGroup: utilizado en lugar de MinecraftChatToDiscordMessageFormat
-#                                                    cuando no se encontró un grupo primario para el jugador
-#
-# Variables disponibles:
-# %username%:     nombre original del jugador
-#                  ejemplo: jeb_
-# %displayname%:  muestra el nombre modificado
-#                  ejemplo: BigBossManJeb
-# %usernamenoescapes%:     nombre original del jugador sin escapar del formato de discordia (para usar en código en línea y reducción de bloque de código)
-#                  example: jeb_
-# %displaynamenoescapes%:  muestra el nombre modificado sin escapar del formato de discordia (para usar en código en línea y reducción de bloque de código)
-#                  example: BigBossManJeb
-# %message%:      Contenido del mensaje
-#                  ejemplo: Hello!
-# %primarygroup%: el nombre del grupo primario del usuario
-# %world%:        nombre del mundo en el que el jugador se encuentra
-#                  ejemplo: world
-# %worldalias%:   alias del mundo en el que el jugador se encuentra por Multiverse-Core
-#                  ejemplo: Mainland
-# %date%:         fecha & tiempo actual
-#                  ejemplo: Sun Jan 1 15:30:45 PDT 2017
-# %channelname%:  el nombre del canal en el que se envió el mensaje, si el mensaje se envió en un canal
-#                  ejemplo: Global
-# Los PlaceholderAPI placeholders también son compatibles
-#
-MinecraftChatToDiscordMessageFormat: "**%primarygroup%** %displayname% » %message%"
-MinecraftChatToDiscordMessageFormatNoPrimaryGroup: "%displayname% » %message%"
+Messages:
+  GENERAL:
+    PREFIX: "&dDeluxeHub &8❙"
+    NO_PERMISSION: "%prefix% &cYou are forbidden to use this."
+    CUSTOM_COMMAND_NO_PERMISSION: "&cYou are not allowed to execute this command."
+    INVALID_PLAYER: "%prefix% &c%player% is not online!"
+    CONFIG_RELOAD: "%prefix% &aAll configuration files has been reloaded in &7%time%ms"
+    COOLDOWN_ACTIVE: "%prefix% &cYou must wait &e%time%s &cbefore doing this again!"
 
-# Mensaje del plugin en el canal de chat
-# Este es un mensaje especial que solo se usa cuando un canal de chat compatible esta vinculado con el plugin
-# Modifica cómo sería el mensaje en el juego para incluir información relacionada con el canal del que proviene el mensaje
-#
-# Variables disponibles:
-# %channelcolor%:    el carácter de color correspondiente al canal
-#                     ejemplo: los mensajes del canal están en rojo, esto reemplazaría con el color rojo
-# %channelname%:     el nombre literal del canal, generalmente el nombre que solo el servidor ve internamente
-#                     ejemplo: staff
-# %channelnickname%: el apodo formal del canal, generalmente el nombre del canal que los jugadores ven
-#                     ejemplo: Staff
-# %message%:         el mensaje después del procesamiento a través de DiscordToMinecraftChatMessageFormat / DiscordToMinecraftChatMessageFormatNoRole
-#                     ejemplo: jeb_ > Hola desde el servidor!
-#
-ChatChannelHookMessageFormat: "%channelcolor%[%channelnickname%]&r %message%"
+  GAMEMODE:
+    GAMEMODE_CHANGE: "%prefix% &7You have changed gamemode to &a%gamemode%"
+    GAMEMODE_CHANGE_OTHER: "%prefix% &7You have changed gamemode to &a%gamemode% &7for &e%player%"
+    GAMEMODE_INVALID: "%prefix% &e%gamemode% &cis not a valid gamemode"
 
-# Mensajes Dynmap
-#
-# DynmapNameFormat: el formato para la parte del nombre de usuario del mensaje enviado a Dynmap (esto puede estar oculto dependiendo de la configuración de dynmap)
-# DynmapChatFormat: el formato de la parte del mensaje enviado a Dynmap
-#
-# Variables disponibles:
-# Igual que Discord -> marcadores de posición de Minecraft
-#
-# DynmapDiscordFormat: el formato para los mensajes de Dynmap que van a Discord
-#
-# Variables disponibles:
-# %message%:  Contenido del mensaje
-#              ejemplo: Hello!
-# %name%:     el nombre de usuario para el mensaje enviado en el chat web de Dynmap (podría estar en blanco)
-#              ejemplo: Notch
-# Los PlaceholderAPI placeholders también son compatibles
-#
-DynmapNameFormat: "[Discord | %toprole%] %username%"
-DynmapChatFormat: "%message%"
-DynmapDiscordFormat: "[Dynmap] %name% » %message%"
+  VANISH:
+    ENABLE: "%prefix% &aYou have now vanished"
+    DISABLE: "%prefix% &cYou have now unvanished"
 
-# Mensaje del canal de la consola de Discord
-# Este es el formato utilizado al enviar una línea desde la consola al canal de la consola, si está habilitada
-#
-# Variables disponibles:
-# %date%:  fecha & tiempo actual
-#           ejemplo: Sun Jan 1 15:30:45 PDT 2017
-# %level%: nivel de gravedad del mensaje
-#           ejemplo: INFO, WARN, ERROR
-# %line%:  línea desde la consola
-#           ejemplo: [DiscordSRV] Enabling DiscordSRV vX.Y
-# Los PlaceholderAPI placeholders también son compatibles
-#
-# DiscordConsoleChannelMessagePrefix: El prefijo literal para anteponer a un lote de líneas.
-# DiscordConsoleChannelMessageSuffix: El sufijo literal para agregar a un lote de líneas.
-#
-DiscordConsoleChannelFormat: "[%date% %level%] %line%"
-DiscordConsoleChannelMessagePrefix: ""
-DiscordConsoleChannelMessageSuffix: ""
+  FLIGHT:
+    ENABLE: "%prefix% &aYou have enabled flight"
+    DISABLE: "%prefix% &cYou have disabled flight"
+    ENABLE_OTHER: "%prefix% &cYou have enabled flight for &7%player%"
+    DISABLE_OTHER: "%prefix% &cYou have disabled flight for &7%player%"
 
-# Mensaje de error del comando !c desde el chat de Discord
-# Se usa cuando ocurre un error con permisos para que el jugador ejecute el comando, no es un error ejecutando el comando
-# Esto se envía como un MP al usuario
-#
-# Variables disponibles:
-# %user%:  el nombre del usuario que intentó ejecutar el comando
-#           ejemplo: Notch
-# %error%: el motivo del error
-#           ejemplo: Sin permisos
-#
-DiscordChatChannelConsoleCommandNotifyErrorsFormat: "**%user%**, trataste de ejecutar un comando. Lamentablemente, hubo un error: %error%"
+  PLAYER_HIDER:
+    HIDDEN: "%prefix% &cPlayer visibility disabled"
+    SHOWN: "%prefix% &aPlayer visibility enabled"
 
-# Comando de lista de jugadores desde el chat de Discord
-# Mensajes utilizados para cuando alguien ejecuta el comando de la lista de jugadores en un canal de chat
-#
-# DiscordChatChannelListCommandFormatOnlinePlayers: el mensaje al principio de la lista, antes de todos los nombres de los jugadores
-# DiscordChatChannelListCommandFormatNoOnlinePlayers: utilizado en su lugar para cuando no hay jugadores en línea
-# DiscordChatChannelListCommandPlayerFormat: el formato de cómo debe aparecer cada jugador en la lista
-#   Variables disponibles:
-#   %username%:     nombre original del jugador
-#   %displayname%:  muestra el nombre modificado
-#   %primarygroup%: el nombre del grupo primario del usuario
-#   %world%:        nombre del mundo en el que el jugador se encuentra
-#   %worldalias%:   alias del mundo en el que el jugador se encuentra por Multiverse-Core
-# DiscordChatChannelListCommandAllPlayersSeparator: el separador usado entre jugadores
-#
-DiscordChatChannelListCommandFormatOnlinePlayers: "**Jugadores Online (%playercount%):**"
-DiscordChatChannelListCommandFormatNoOnlinePlayers: "**Sin jugadores Online**"
-DiscordChatChannelListCommandPlayerFormat: "%displayname%"
-DiscordChatChannelListCommandAllPlayersSeparator: ", "
+  LOBBY:
+    SET_LOBBY: "%prefix% &aYou have successfully set the lobby spawn point"
 
-# Minecraft -> Discord mensajes de notificación
-#
-#
-# Insertar información:
-# Color:      acepta un código de color hexadecimal (p.ej. "#ffffff") o un entero rgb (p.ej. 0)
-# Fields:     el formato es "título;valor;inline" (p.ej. "Quien se unio?;%displayname%;true") o "blanco" para agregar un campo en blanco
-# Timestamp:  establecido en verdadero para usar la hora en que se envió el mensaje o usar una marca de tiempo de época para una hora específica (https://www.epochconverter.com/)
-#
-# Marcadores de posición disponibles para PlayerJoin/PlayerFirstJoin/PlayerLeave/PlayerDeath/PlayerAchievement:
-# %displayname%:         muestra el nombre modificado
-# %username%:            nombre original del jugador
-# %date%:                fecha & tiempo actual
-# %embedavatarurl%:      el avatar del usuario
-# %botavatarurl%:        el avatar del bot
-# %botname%:             el nombre del bot
-# Los PlaceholderAPI placeholders también son compatibles
-#
-# Marcadores de posición disponibles para mensajes PlayerJoin:
-# %message%:     mensaje de entrada que se ve en el juego
-#
-MinecraftPlayerJoinMessage:
-  Enabled: true
-  Webhook:
-    Enable: false
-    AvatarUrl: "%botavatarurl%"
-    Name: "%botname%"
-  Content: ""
-  Embed:
-    Enabled: true
-    Color: "#00ff00"
-    Author:
-      ImageUrl: "%embedavatarurl%"
-      Name: "%username% Entró al servidor"
-      Url: ""
-    ThumbnailUrl: ""
-    Title:
-      Text: ""
-      Url: ""
-    Description: ""
-    Fields: []
-    ImageUrl: ""
-    Footer:
-      Text: ""
-      IconUrl: ""
-    Timestamp: false
-#
-# Marcadores de posición disponibles para mensajes PlayerFirstJoin:
-# %message%:     mensaje de entrada que se ve en el juego
-#
-MinecraftPlayerFirstJoinMessage:
-  Enabled: true
-  Webhook:
-    Enable: false
-    AvatarUrl: "%botavatarurl%"
-    Name: "%botname%"
-  Content: ""
-  Embed:
-    Enabled: true
-    Color: "#ffd700"
-    Author:
-      ImageUrl: "%embedavatarurl%"
-      Name: "%username% Entró al servidor por primera vez"
-      Url: ""
-    ThumbnailUrl: ""
-    Title:
-      Text: ""
-      Url: ""
-    Description: ""
-    Fields: []
-    ImageUrl: ""
-    Footer:
-      Text: ""
-      IconUrl: ""
-    Timestamp: false
-#
-# Marcadores de posición disponibles para mensajes PlayerLeave:
-# %message%:        mensaje de salida que se ve en el juego
-#
-MinecraftPlayerLeaveMessage:
-  Enabled: true
-  Webhook:
-    Enable: false
-    AvatarUrl: "%botavatarurl%"
-    Name: "%botname%"
-  Content: ""
-  Embed:
-    Enabled: true
-    Color: "#ff0000"
-    Author:
-      ImageUrl: "%embedavatarurl%"
-      Name: "%username% Salió del servidor"
-      Url: ""
-    ThumbnailUrl: ""
-    Title:
-      Text: ""
-      Url: ""
-    Description: ""
-    Fields: []
-    ImageUrl: ""
-    Footer:
-      Text: ""
-      IconUrl: ""
-    Timestamp: false
-#
-# Marcadores de posición disponibles mensajes  para PlayerDeath:
-# %deathmessage%: mensaje de muerte original
-# %world%:        nombre del mundo en que el usuario murió
-#
-MinecraftPlayerDeathMessage:
-  Enabled: true
-  Webhook:
-    Enable: false
-    AvatarUrl: "%botavatarurl%"
-    Name: "%botname%"
-  Content: ""
-  Embed:
-    Enabled: true
-    Color: "#000000"
-    Author:
-      ImageUrl: "%embedavatarurl%"
-      Name: "%deathmessage%"
-      Url: ""
-    ThumbnailUrl: ""
-    Title:
-      Text: ""
-      Url: ""
-    Description: ""
-    Fields: []
-    ImageUrl: ""
-    Footer:
-      Text: ""
-      IconUrl: ""
-    Timestamp: false
-#
-# Variables disponibles para mensaje de PlayerAchievement:
-# %achievement%: contenido del mensaje
-# %world%:       nombre del mundo en que está el usuario
-#
-MinecraftPlayerAchievementMessage:
-  Enabled: true
-  Webhook:
-    Enable: false
-    AvatarUrl: "%botavatarurl%"
-    Name: "%botname%"
-  Content: ""
-  Embed:
-    Enabled: true
-    Color: "#ffd700"
-    Author:
-      ImageUrl: "%embedavatarurl%"
-      Name: "%displayname% ha conseguido el progreso %achievement%!"
-      Url: ""
-    ThumbnailUrl: ""
-    Title:
-      Text: ""
-      Url: ""
-    Description: ""
-    Fields: []
-    ImageUrl: ""
-    Footer:
-      Text: ""
-      IconUrl: ""
-    Timestamp: false
+  CHAT:
+    CLEARCHAT: "&b&l* &fChat has been cleared by &e%player% &b&l*"
+    CLEARCHAT_PLAYER: "&cYour chat has been cleared by an administrator."
 
-# Mensajes de actualización del tema del canal
-# Esto es todo lo relacionado con la actualización automática de los temas del chat o del canal de la consola con información del servidor
-#
-# ChannelTopicUpdater______ChannelTopicFormat: mensaje para establecer el tema del canal a cada X segundos
-# ChannelTopicUpdater______ChannelTopicAtShutdownFormat: mensaje para establecer el tema del canal cuando el servidor se apaga
-#
-# Available placeholders:
-# %playercount%:   número de jugadores actuales
-# %playermax%:     número máximo de jugadores
-# %date%:          fecha actual
-# %totalplayers%:  cantidad total de jugadores que alguna vez se unieron al mundo principal
-# %uptimemins%:    cantidad de minutos desde que comenzó DiscordSRV
-# %uptimehours%:   cantidad de horas desde que comenzó DiscordSRV
-# %motd%:          lema del día del servidor
-# %serverversion%: versión de servidor, como Spigot-1.9
-# %freememory%:    memoria libre de JVM en MB
-# %usedmemory%:    memoria utilizada de JVM en MB
-# %totalmemory%:   memoria total de JVM en MB
-# %maxmemory%:     memoria máxima de JVM en MB
-# %freememorygb%:  memoria libre de JVM en GB
-# %usedmemorygb%:  memoria utilizada de JVM en GB
-# %totalmemorygb%: memoria total de JVM en GB
-# %maxmemorygb%:   memoria máxima de JVM en GB
-# %tps%:           promedio de TPS del servidor
-# Los PlaceholderAPI placeholders también son compatibles
-#
-ChannelTopicUpdaterChatChannelTopicFormat: "%playercount%/%playermax% jugadores online | Se han unido %totalplayers% jugadores únicos | Servidor online por %uptimemins% minutos | Última actualizacion: %date%"
-ChannelTopicUpdaterConsoleChannelTopicFormat: "TPS: %tps% | Mem: %usedmemorygb%GB usada/%freememorygb%GB libre/%maxmemorygb%GB max | %serverversion%"
-# AtServerShutdownFormat solo es compatible con %totalplayers%, %serverversion%, & %date% / %time%
-ChannelTopicUpdaterChatChannelTopicAtServerShutdownFormat: "El servidor está Offline | Se han unido %totalplayers% jugadores únicos"
-ChannelTopicUpdaterConsoleChannelTopicAtServerShutdownFormat: "El servidor está Offline | %serverversion%"
+    LOCKED: "%prefix% &cChat is currently locked"
+    LOCKED_BROADCAST: "%prefix% &e%player% &chas locked global chat"
+    UNLOCKED_BROADCAST: "%prefix% &e%player% &ahas unlocked global chat"
 
-# Mensaje de Discord de commandos
-# Este es el mensaje enviado a los jugadores cuando ejecutan "/discord". Se recomienda dejar la sintaxis del comando como parte de este
-# Use {INVITE} como marcador de posición para el enlace de invitación que las personas necesitan para unirse al servidor Discord, usa DiscordInviteLink configurado en config.yml
-#
-DiscordCommandFormat: "&bÚnete a nuestro servidor de Discord {INVITE}. Para ayuda con los comandos, ejecute \"/discord ?\""
+    ANTI_SWEAR_WORD_BLOCKED: "%prefix% &cMessage removed by anti-swear systems"
+    ANTI_SWEAR_ADMIN_NOTIFY: "%prefix% &c%player% &7attempted to say: &b%word%"
 
-# Sin formato de mensaje de permiso
-NoPermissionMessage: "&cFalta el formato del mensaje de permiso"
+    COMMAND_BLOCKED: "%prefix% &cThis command has been restricted"
 
-# Mensaje de comando desconocido
-UnknownCommandMessage: "&bEste comando no existe"
+  SCOREBOARD:
+    TOGGLE: "%prefix% &aYou have %value% the scoreboard"
 
-# Mensajes de inicio/apagado del servidor
-# DiscordChatChannelServerStartupMessage: mensaje que se enviará cuando el servidor se inicie; dejar en blanco para deshabilitar
-# DiscordChatChannelServerShutdownMessage: mensaje que se enviará cuando el servidor se apague; dejar en blanco para deshabilitar
-#
-DiscordChatChannelServerStartupMessage: ":white_check_mark: **Servidor iniciado**"
-DiscordChatChannelServerShutdownMessage: ":octagonal_sign: **Servidor detenido**"
+  DOUBLE_JUMP:
+    COOLDOWN_ACTIVE: "%prefix% &cYou must wait &e%time%s &cto Double Jump again!"
 
-# Mensaje de vigilancia del servidor
-#
-# El perro guardián monitorea constantemente la última vez que tu servidor realizó un tic del juego
-# Si el tiempo transcurrido desde el último tic sobrepasa el intervalo establecido en segundos, se pueden activar los mensajes de Discord
-#
-# ServerWatchdogMessage: el mensaje que se enviará al canal de chat principal.
-#                        Puedes @mencionar usuarios usando "<@USERID>", Ej. "<@12345678901234567890>"
-#                        Puedes @mencionar roles usando "<@&ROLEID>", Ej. "<@&12345678901234567890>"; ver consola cuando discordsrv se carga para las ids de los roles
-#                        Puedes @mencionar el propietario del servidor usando "%guildowner%"
-#                        puede poner la fecha y la hora del crash en el mensaje usando %date%
-#
-ServerWatchdogMessage: "`%date%` %guildowner%, la sala de servidores está encendida :fire::bangbang:"
+  WORLD_EVENT_MODIFICATIONS:
+    ITEM_DROP: "%prefix% &cYou are not allowed to drop items."
+    ITEM_PICKUP: "%prefix% &cYou are not allowed to pickup items."
+    BLOCK_PLACE: "%prefix% &cYou are not allowed to place blocks."
+    BLOCK_BREAK: "%prefix% &cYou are not allowed to break blocks."
+    BLOCK_INTERACT: "%prefix% &cYou are not allowed to use this."
+    PLAYER_PVP: "%prefix% &cYou are not allowed to pvp here."
 
-# Mensajes de vinculación de cuenta
-# Estos son mensajes utilizados cuando las cuentas están vinculadas
-#
-# Variables disponibles:
-# CodeGenerated:                %code%:         el código generado para que el jugador vincule su cuenta
-#                               %botname%:      el nombre del bot en Discord
-# DiscordAccountLinked:         %name%:         el nombre del jugador de Minecraft al que estaba vinculada la cuenta de Discord
-#                               %displayname%:  el nombre para mostrar del reproductor de Minecraft al que se vinculó la cuenta Discord del usuario
-#                               %uuid%:         uuid del jugador de Minecraft al que estaba vinculada la cuenta de Discord
-# DiscordAccountAlreadyLinked:  %uuid%:         el uuid de Minecraft de la cuenta de Minecraft vinculada del usuario
-#                               %username%:     el nombre de usuario de Minecraft de la cuenta de Minecraft vinculada del usuario
-# DiscordLinkedAccountRequired  %message%:      el mensaje que el usuario no pudo enviar porque no estaba vinculado
-# MinecraftAccountLinked:       %id%:           el ID de Discord del usuario al que estaba vinculada la cuenta de Minecraft
-#                               %username%:     el nombre de Discord del usuario al que estaba vinculada la cuenta de Minecraft
-# LinkedCommandSuccess:         %name%:         el nombre de usuario de Discord del usuario de Discord al que está vinculada la cuenta de Minecraft del usuario
-# UnlinkCommandSuccess:         %name%:         el nombre de usuario de Discord del usuario de Discord al que estaba vinculada la cuenta de Minecraft del usuario
-#
-# Discord
-CodeGenerated: "Su código de vinculación es %code%. Envíele un MP al bot (%botname%) en Discord, incluyendo solamente el código de vinculación."
-UnknownCode: "No conozco ese código, inténtelo de nuevo."
-InvalidCode: "¿Estás seguro de que ese es tu código? Los códigos de enlace tienen 4 números de largo"
-DiscordAccountLinked: "Su cuenta de Discord ha sido vinculada a %name% (%uuid%)"
-DiscordAccountAlreadyLinked: "Ya estás vinculado a %username% (%uuid%)"
-DiscordLinkedAccountRequired: "Intentaste decir el siguiente mensaje en el chat del juego, pero este servidor requiere que tenga su cuenta de Minecraft vinculada a su cuenta de Discord. Vincúlelo en el juego ejecutando `/discord link`. \n```%message%```"
-DiscordLinkedAccountCheckFailed: "No se puede verificar si su cuenta está vinculada, vuelva a intentarlo más tarde"
-# Minecraft
-ClickToCopyCode: "Haga clic para copiar"
-MinecraftAccountLinked: "&bSu UUID ha sido vinculado al usuario de Discord %username% (%id%)"
-MinecraftAccountAlreadyLinked: "&bSu cuenta de Minecraft ya está asociada a una cuenta Discord. Si tiene permiso, puede desvincular su cuenta con /discord unlink."
-LinkedCommandSuccess: "&bTu cuenta de Minecraft está asociada con %name%"
-UnlinkCommandSuccess: "&bTu cuenta de Minecraft ya no está asociada con %name%"
-MinecraftNoLinkedAccount: "&cTu cuenta de Minecraft no está asociada con una cuenta de Discord"
-MinecraftNobodyFound: "&cNo se encontrá a nadie con Discord ID/nombre de Discord/nombre de Minecraft/Minecraft UUID que coincida con \"%target%\" para buscar"
+  HOLOGRAMS:
+    EMPTY: "%prefix% &cCould not find any holograms."
+    ALREADY_EXISTS: "%prefix% &cThere is a hologram with this name already &7(%name%)&c."
+    INVALID_HOLOGRAM: "%prefix% &cThere is no hologram with this name &7(%name%)&c."
+    INVALID_LINE: "%prefix% &cCould not find hologram line."
+
+    SPAWNED: "%prefix% &7Created new hologram with name &b%name%&7."
+    DESPAWNED: "%prefix% &7Removed hologram with name &b%name%&7."
+    MOVED: "%prefix% &7Moved hologram &b%name%&7."
+
+    LINE_SET: "%prefix% &7Set line &b%line%&7."
+    ADDED_LINE: "%prefix% &7Added new line."
+    REMOVED_LINE: "%prefix% &7Removed line &b%line%&7."
+
+  ANTI_WORLD_DOWNLOADER:
+    ADMIN_NOTIFY: "%prefix% &f%player% &chas joined with the World Downloader Mod, their ability to use it has been restricted by our systems."
+    MOVED: "%prefix% &7Moved hologram &b%name%&7."
+
+    LINE_SET: "%prefix% &7Set line &b%line%&7."
+    ADDED_LINE: "%prefix% &7Added new line."
+    REMOVED_LINE: "%prefix% &7Removed line &b%line%&7."
+
+  ANTI_WORLD_DOWNLOADER:
+    ADMIN_NOTIFY: "%prefix% &f%player% &chas joined with the World Downloader Mod, their ability to use it has been restricted by our systems."
