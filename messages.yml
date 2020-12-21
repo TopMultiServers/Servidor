@@ -356,9 +356,9 @@ UnknownCommandMessage: "&bEste comando no existe"
 # Mensajes de inicio/apagado del servidor
 # DiscordChatChannelServerStartupMessage: mensaje que se enviará cuando el servidor se inicie; dejar en blanco para deshabilitar
 # DiscordChatChannelServerShutdownMessage: mensaje que se enviará cuando el servidor se apague; dejar en blanco para deshabilitar
-
-DiscordChatChannelServerStartupMessage: ":yes:╔═══════════════════╗:yes:																																					      				:white_check_mark:**--->El servidor está  abierto** 																																											:pager:**--->**IP = **`80.26.164.102`**   																																																																				:satellite:**--->**Versión = **1.14**" 																																			
-DiscordChatChannelServerShutdownMessage: ":octagonal_sign: **Servidor detenido**"        
+#
+DiscordChatChannelServerStartupMessage: ":white_check_mark: **Servidor iniciado**"
+DiscordChatChannelServerShutdownMessage: ":octagonal_sign: **Servidor detenido**"
 
 # Mensaje de vigilancia del servidor
 #
